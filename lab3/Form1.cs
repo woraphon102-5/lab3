@@ -39,7 +39,7 @@ namespace lab3
             this.textBox_major.Text = "";
 
  
-            all.Text = (from DataGridViewRow row in all.Rows
+            all_min1.Text = (from DataGridViewRow row in all.Rows
                         where row.Cells[1].FormattedValue.ToString() != string.Empty
                         select Convert.ToDouble(row.Cells[4].FormattedValue)).Max().ToString();
             double max = 0;
@@ -51,14 +51,44 @@ namespace lab3
                 }
             }
 
-            all.Text = max.ToString();
+            all_min1.Text = max.ToString();
 
             double[] cmax = new double[all.Rows.Count];
             cmax = (from DataGridViewRow row in all.Rows
                     where row.Cells[1].FormattedValue.ToString() != string.Empty
                     select Convert.ToDouble(row.Cells[4].FormattedValue)).ToArray();
 
-            all.Text = cmax.Max().ToString();
+            all_min1.Text = cmax.Max().ToString();
+            //
+
+            all_min2.Text = (from DataGridViewRow row in all.Rows
+                             where row.Cells[1].FormattedValue.ToString() != string.Empty
+                             select Convert.ToDouble(row.Cells[4].FormattedValue)).Max().ToString();
+            double min = 0;
+            for (int i = 1; i <= all.Rows.Count - 1; i++)
+            {
+                if (min < double.Parse(all.Rows[i].Cells[1].Value.ToString()))
+                {
+                    min = double.Parse(all.Rows[i].Cells[1].Value.ToString());
+                }
+            }
+
+            all_min2.Text = max.ToString();
+
+            double[] cmin = new double[all.Rows.Count];
+            cmin = (from DataGridViewRow row in all.Rows
+                    where row.Cells[1].FormattedValue.ToString() != string.Empty
+                    select Convert.ToDouble(row.Cells[4].FormattedValue)).ToArray();
+
+            all_min2.Text = cmin.Min().ToString();
+            int bts = all.Rows.Count;
+            all_min3.Text = bts.ToString();
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
